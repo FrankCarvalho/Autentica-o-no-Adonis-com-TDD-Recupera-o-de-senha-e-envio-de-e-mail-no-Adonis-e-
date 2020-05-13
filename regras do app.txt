@@ -1,0 +1,29 @@
+1 - Usuário pode se inscrever em N workshops
+2 - workshops pode ter inscrção de N usuários
+
+N-N (pivolt)
+
+User <-> Subscription <-> Workshop
+
+------
+
+user_id
+workshop_id
+created_at
+update_at
+
+-------
+
+RF (O que a aplicação deve faser)
+RNF (Requisitos não-associados às funcionalidades)
+RN (Regras sobre os requisitos funcionais)
+
+- O usuário deve poder se inscrever em um Workshop
+
+-- O usuário não pode se inscrever em 2 Workshop na mesma sessão 
+
+-- Um usuário só pode receber no máximo 48 inscrições
+
+-- O usuario pode remover sua inscrição do workshop
+
+3 sessões

@@ -1,14 +1,15 @@
 const Antl = use('Antl');
 
-class reset {
+class Profile {
   get validateAll(){
     return true;
   }
 
   get rules () {
     return {
-      token: 'required',
-      password: 'required|confirmed',
+      name: 'required',
+      password: 'confirmed', 
+      avatar: 'file|file_ext:png,jpg,jpeg|file_size:2mb|file_types:image',
     };
   }
   get messages(){
@@ -16,4 +17,4 @@ class reset {
   }
 }
 
-module.exports = reset;
+module.exports = Profile;

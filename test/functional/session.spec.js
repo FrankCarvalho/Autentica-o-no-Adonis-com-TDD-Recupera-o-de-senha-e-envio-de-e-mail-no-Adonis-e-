@@ -9,19 +9,16 @@ trait('DatabaseTransactions');
 test('it should return JWT token when session created', async ({ assert, client }) => {
   const sessionPayload = {
     email: 'inmob.comercial@gmail.com',
-    password: '123456'
+    password: '123456',
   };
 
-  const user = await Factory
-    .model('App/Models/User')
-    .create(sessionPayload);
+  await Factory.model('App/Models/User').create(sessionPayload);
 
   const response = await client
     .post('/sessions')
     .send(sessionPayload)
-    .end()
+    .end();
 
-  //console.log(response);
 
   response.assertStatus(200);
   assert.exists(response.body.token);

@@ -1,6 +1,6 @@
 const { test, trait } = use('Test/Suite')('Forgot Password');
 
-const { subHours, format } = require('date-fns');
+const { subHours, subMinutes, format } = require('date-fns');
 
 const Mail = use('Mail')
 const Hash = use('Hash')
@@ -38,7 +38,7 @@ test('it should and email with reset password instruction', async ({ assert, cli
   Mail.restore();
 });
 
-//cham auma rota tipo: /reset (token, senha nova, confirmacao, senha precisa mudar)
+//chama auma rota tipo: /reset (token, senha nova, confirmacao, senha precisa mudar)
 //ele só vai resetar se o tolken tiver sido criado a menos de 2h
 
 test('it should be able to reset passwords', async ({ assert, client }) => {
@@ -78,7 +78,7 @@ test('não pode redefinir a senha após 2h de solicitação de senha esquecida.'
 
   await user.tokens().save(userToken);
 
-  const dateWithSub = format(subHours(new Date(), 2), 'yyyy-MM-dd HH:ii:ss');
+  const dateWithSub = format(subMinutes(subHours(new Date(), 2), 10), 'yyyy-MM-dd HH:ii:ss');
 
   await Database.table('tokens')
     .where('token', userToken.token)
